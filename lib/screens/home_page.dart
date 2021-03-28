@@ -2,11 +2,17 @@ import 'package:bytebank/components/balance.dart';
 import 'package:bytebank/components/credit_card.dart';
 import 'package:bytebank/components/page_button.dart';
 import 'package:bytebank/screens/contact_list_page.dart';
+import 'package:bytebank/screens/history_list.dart';
+import 'package:bytebank/screens/transfers/transfers_list.dart';
+import 'package:bytebank/utils/route.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget with NamedRoute {
   @override
   _HomePageState createState() => _HomePageState();
+
+  @override
+  String get routeName => '/';
 }
 
 class _HomePageState extends State<HomePage> {
@@ -57,28 +63,20 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               children: [
                 PageButton(
-                  title: 'Manage contacts',
-                  color: Colors.cyan,
-                  icon: Icons.people,
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ContactListPage(),
-                      ),
-                    );
-                  },
-                ),
-                PageButton(
                   title: 'Transfers',
                   color: Colors.green,
                   icon: Icons.monetization_on,
-                  onTap: () {},
+                  onTap: () {
+                    pushWithSettings(context, TransfersListPage());
+                  },
                 ),
                 PageButton(
                   title: 'History',
                   color: Colors.deepOrange,
                   icon: Icons.history,
-                  onTap: () {},
+                  onTap: () {
+                    pushWithSettings(context, HistoryListPage());
+                  },
                 ),
               ],
             ),

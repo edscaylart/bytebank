@@ -21,9 +21,9 @@ class _ContactFormPageState extends State<ContactFormPage> {
     final int agency = int.tryParse(_agencyController.text);
     final int account = int.tryParse(_accountController.text);
 
-    final Contact newContact = Contact(name, document, agency, account);
+    // final Contact newContact = Contact(name, document, agency, account);
 
-    _dao.save(newContact).then((id) => Navigator.pop(context));
+    // _dao.save(newContact).then((id) => Navigator.pop(context));
   }
 
   @override

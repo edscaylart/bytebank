@@ -78,7 +78,7 @@ class _ContactListPageState extends State<ContactListPage> {
                       itemCount: contacts.length,
                       itemBuilder: (context, index) {
                         final Contact contact = contacts[index];
-                        return ContactItem(contact);
+                        return ContactItem(contact, () {});
                       },
                     );
                 }

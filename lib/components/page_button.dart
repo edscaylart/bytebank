@@ -6,7 +6,12 @@ class PageButton extends StatelessWidget {
   final MaterialColor color;
   final Function() onTap;
 
-  PageButton({this.title, this.icon, this.color, this.onTap});
+  PageButton({
+    @required this.title,
+    @required this.icon,
+    @required this.color,
+    @required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

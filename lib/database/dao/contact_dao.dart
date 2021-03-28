@@ -42,10 +42,10 @@ class ContactDao {
     final List<Contact> contacts = [];
     for (Map<String, dynamic> row in result) {
       final Contact contact = Contact(
-        row[_name],
-        row[_document],
-        row[_agency],
-        row[_accountNumber],
+        name: row[_name],
+        document: row[_document],
+        agency: row[_agency],
+        account: row[_accountNumber],
         id: row[_id],
       );
       contacts.add(contact);
