@@ -1,9 +1,9 @@
+import 'package:bytebank/components/circle_progress.dart';
 import 'package:bytebank/components/contact_item.dart';
-import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/models/contact.dart';
-import 'package:bytebank/repository/contact_repository.dart';
 import 'package:bytebank/screens/transfers/transfers_form_contact.dart';
 import 'package:bytebank/screens/transfers/transfers_form_value.dart';
+import 'package:bytebank/services/repository/contact_repository.dart';
 import 'package:bytebank/utils/route.dart';
 import 'package:flutter/material.dart';
 
@@ -86,36 +86,26 @@ class _TransfersListPageState extends State<TransfersListPage> {
                   ),
                 ),
               ),
-              Expanded(
-                child: FutureBuilder(
-                  initialData: [],
-                  future: _repository.fetchContacts(),
-                  builder: (context, snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                        break;
-                      case ConnectionState.waiting:
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(),
-                            Text(
-                              'loading contacts',
-                              style: TextStyle(color: Colors.grey[500]),
-                            )
-                          ],
+              FutureBuilder(
+                initialData: [],
+                future: _repository.fetchContacts(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                      break;
+                    case ConnectionState.waiting:
+                      return CircleProgress(message: 'loading contacts');
+                    case ConnectionState.active:
+                      break;
+                    case ConnectionState.done:
+                      List<Contact> contacts = snapshot.data;
+                      if (contacts.length == 0) {
+                        return Center(
+                          child: Text('No contacts found'),
                         );
-                      case ConnectionState.active:
-                        break;
-                      case ConnectionState.done:
-                        List<Contact> contacts = snapshot.data;
-                        if (contacts.length == 0) {
-                          return Center(
-                            child: Text('No contacts found'),
-                          );
-                        }
-                        return ListView.builder(
+                      }
+                      return Expanded(
+                        child: ListView.builder(
                           itemCount: contacts.length,
                           itemBuilder: (context, index) {
                             final Contact contact = contacts[index];
@@ -126,13 +116,13 @@ class _TransfersListPageState extends State<TransfersListPage> {
                               },
                             );
                           },
-                        );
-                    }
-                    return Center(
-                      child: Text('Error to list all contacts'),
-                    );
-                  },
-                ),
+                        ),
+                      );
+                  }
+                  return Center(
+                    child: Text('Error to list all contacts'),
+                  );
+                },
               ),
             ],
           ),

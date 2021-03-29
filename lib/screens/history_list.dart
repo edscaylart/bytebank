@@ -1,9 +1,7 @@
-import 'package:bytebank/components/contact_item.dart';
+import 'package:bytebank/components/circle_progress.dart';
 import 'package:bytebank/components/transaction_item.dart';
-import 'package:bytebank/database/dao/contact_dao.dart';
-import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/models.dart';
-import 'package:bytebank/repository/transaction_repository.dart';
+import 'package:bytebank/services/repository/transaction_repository.dart';
 import 'package:bytebank/utils/route.dart';
 import 'package:flutter/material.dart';
 
@@ -51,48 +49,38 @@ class _HistoryListPageState extends State<HistoryListPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Expanded(
-                child: FutureBuilder(
-                  initialData: [],
-                  future: _repository.fetchTransactions(),
-                  builder: (context, snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                        break;
-                      case ConnectionState.waiting:
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(),
-                            Text(
-                              'loading transactions',
-                              style: TextStyle(color: Colors.grey[500]),
-                            )
-                          ],
+              FutureBuilder(
+                initialData: [],
+                future: _repository.fetchTransactions(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                      break;
+                    case ConnectionState.waiting:
+                      return CircleProgress(message: 'loading transactions');
+                    case ConnectionState.active:
+                      break;
+                    case ConnectionState.done:
+                      final List<Transaction> transactions = snapshot.data;
+                      if (transactions.length == 0) {
+                        return Center(
+                          child: Text('No transaction found'),
                         );
-                      case ConnectionState.active:
-                        break;
-                      case ConnectionState.done:
-                        final List<Transaction> transactions = snapshot.data;
-                        if (transactions.length == 0) {
-                          return Center(
-                            child: Text('No transaction found'),
-                          );
-                        }
-                        return ListView.builder(
+                      }
+                      return Expanded(
+                        child: ListView.builder(
                           itemCount: transactions.length,
                           itemBuilder: (context, index) {
                             final Transaction transaction = transactions[index];
                             return TransactionItem(transaction: transaction);
                           },
-                        );
-                    }
-                    return Center(
-                      child: Text('Error to list all transactions'),
-                    );
-                  },
-                ),
+                        ),
+                      );
+                  }
+                  return Center(
+                    child: Text('Error to list all transactions'),
+                  );
+                },
               ),
             ],
           ),

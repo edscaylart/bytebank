@@ -1,7 +1,6 @@
 import 'package:bytebank/components/balance.dart';
 import 'package:bytebank/components/credit_card.dart';
 import 'package:bytebank/components/page_button.dart';
-import 'package:bytebank/screens/contact_list_page.dart';
 import 'package:bytebank/screens/history_list.dart';
 import 'package:bytebank/screens/transfers/transfers_list.dart';
 import 'package:bytebank/utils/route.dart';
