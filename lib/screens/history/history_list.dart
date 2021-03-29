@@ -1,5 +1,5 @@
 import 'package:bytebank/components/circle_progress.dart';
-import 'package:bytebank/components/transaction_item.dart';
+import 'package:bytebank/screens/history/components/transaction_item.dart';
 import 'package:bytebank/models/models.dart';
 import 'package:bytebank/services/repository/transaction_repository.dart';
 import 'package:bytebank/utils/route.dart';

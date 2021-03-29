@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bytebank/components/autentication_dialog.dart';
 import 'package:bytebank/components/response_dialog.dart';
-import 'package:bytebank/components/transfers_form.dart';
+import 'package:bytebank/screens/transfers/components/transfers_form.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/models.dart';
 import 'package:bytebank/screens/transfers/transfers_list.dart';

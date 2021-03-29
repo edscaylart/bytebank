@@ -1,20 +1,20 @@
-import 'package:bytebank/components/balance.dart';
-import 'package:bytebank/components/credit_card.dart';
-import 'package:bytebank/components/page_button.dart';
-import 'package:bytebank/screens/history_list.dart';
+import 'package:bytebank/screens/dashboard/components/balance.dart';
+import 'package:bytebank/screens/dashboard/components/credit_card.dart';
+import 'package:bytebank/screens/dashboard/components/page_button.dart';
+import 'package:bytebank/screens/history/history_list.dart';
 import 'package:bytebank/screens/transfers/transfers_list.dart';
 import 'package:bytebank/utils/route.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget with NamedRoute {
+class DashboardPage extends StatefulWidget with NamedRoute {
   @override
-  _HomePageState createState() => _HomePageState();
+  _DashboardPageState createState() => _DashboardPageState();
 
   @override
   String get routeName => '/';
 }
 
-class _HomePageState extends State<HomePage> {
+class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

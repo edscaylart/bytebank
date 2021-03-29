@@ -1,4 +1,4 @@
-import 'package:bytebank/screens/home_page.dart';
+import 'package:bytebank/screens/dashboard/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Bytebank());
@@ -8,7 +8,7 @@ class Bytebank extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      home: HomePage(),
+      home: DashboardPage(),
       theme: Theme.of(context).copyWith(
         appBarTheme: Theme.of(context).appBarTheme.copyWith(
               brightness: Brightness.light,

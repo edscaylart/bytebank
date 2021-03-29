@@ -1,4 +1,4 @@
-import 'package:bytebank/components/transfers_form.dart';
+import 'package:bytebank/screens/transfers/components/transfers_form.dart';
 import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/transfers/transfers_form_value.dart';

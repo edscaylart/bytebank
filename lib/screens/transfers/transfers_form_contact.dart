@@ -1,4 +1,4 @@
-import 'package:bytebank/components/transfers_form.dart';
+import 'package:bytebank/screens/transfers/components/transfers_form.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/transfers/transfers_form_document.dart';
 import 'package:bytebank/utils/route.dart';
